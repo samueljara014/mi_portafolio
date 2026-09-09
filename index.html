@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Portafolio | Samuel Jaramillo</title>
+  
+  <!-- Fuente moderna desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* VARIABLES DE COLOR Y ESTILOS */
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --accent-color: #38bdf8;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* HEADER CON GRADIENTE Y TIPOGRAFÍA DESTACADA */
+    header { 
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center; 
+      padding: 80px 20px 40px;
+      position: relative;
+    }
+
+    header h1 { 
+      font-size: 3.5rem; 
+      font-weight: 800;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
+
+    header p { 
+      font-size: 1.25rem; 
+      color: var(--text-muted); 
+      max-width: 600px;
+    }
+
+    /* NAVEGACIÓN FLOTANTE (STICKY) */
+    nav { 
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      padding: 15px 0;
+      text-align: center;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    nav a { 
+      color: var(--text-muted); 
+      margin: 0 20px; 
+      text-decoration: none; 
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    /* SECCIONES PRINCIPALES */
+    section { 
+      padding: 80px 20px; 
+      max-width: 1000px; 
+      margin: 0 auto; 
+    }
+
+    section h2 { 
+      font-size: 2rem;
+      margin-bottom: 30px; 
+      color: var(--text-main);
+      position: relative;
+      display: inline-block;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 50%;
+      height: 4px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+
+    /* CUADRÍCULA DE PROYECTOS CON GLASSMORPHISM */
+    .proyectos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .proyecto { 
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 25px; 
+      border-radius: 16px; 
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .proyecto:hover {
+      transform: translateY(-8px);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
+    }
+
+    .proyecto h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
+
+    .proyecto p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .proyecto-link {
+      display: inline-block;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .proyecto-link:hover {
+      opacity: 0.8;
+    }
+
+    /* SECCIÓN CONTACTO Y BOTÓN */
+    .btn-contacto {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 30px;
+      background: var(--primary-gradient);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-contacto:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+    }
+
+    /* FOOTER */
+    footer { 
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted); 
+      text-align: center; 
+      padding: 30px 20px; 
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* RESPONSIVE DESIGN FOR MOBILE */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5rem; }
+      nav a { margin: 0 10px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+    <h1>Samuel Jaramillo</h1>
+    <p>Desarrollador Full Stack en formación | Apasionado por la tecnología y la creación de experiencias digitales increíbles.</p>
+  </header>
+
+  <!-- NAVEGACIÓN -->
+  <nav id="navbar">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi">
+    <h2>Sobre mí</h2>
+    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 700px;">
+      ¡Hola! Soy un entusiasta de la programación actualmente estudiando y construyendo soluciones web modernas. Me apasiona aprender tecnologías frontend y backend, resolver problemas complejos y transformar ideas en productos funcionales.
+    </p>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos">
+    <h2>Mis Proyectos</h2>
+    
+    <div class="proyectos-grid">
+      <div class="proyecto">
+        <div>
+          <h3> Proyecto 1</h3>
+          <p>Una aplicación web interactiva desarrollada con HTML, CSS y JavaScript que resuelve un problema específico del usuario.</p>
+        </div>
+        <a href="#" class="proyecto-link">Ver en GitHub &rarr;</a>
+      </div>
+
+      <div class="proyecto">
+        <div>
+          <h3> Proyecto 2</h3>
+          <p>Plataforma para gestión de tareas que permite organizar actividades diarias utilizando almacenamiento local en el navegador.</p>
+        </div>
+        <a href="#" class="proyecto-link">Ver en GitHub &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" style="text-align: center;">
+    <h2>¿Hablamos?</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">
+      Estoy siempre abierto a nuevas oportunidades, colaboraciones o simplemente a charlar sobre tecnología.
+    </p>
+    <a href="mailto:tu-correo@ejemplo.com" class="btn-contacto">Enviar mensaje</a>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>© 2026 - Diseñado y construido por [Tu Nombre]</p>
+  </footer>
+
+  <!-- SCRIPT INTERACTIVO -->
+  <script>
+    // Añade una sombra a la barra de navegación al hacer scroll
+    const navbar = document.getElementById('navbar');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
